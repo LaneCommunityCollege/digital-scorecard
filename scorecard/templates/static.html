@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block front_content %}
+<div id="static_content_container">
+    <div id="static_content">
+        <h1>{{ page.pagetitle }}</h1>
+        {{page.pagebody|safe }}
+    </div>
+</div>
+{% endblock %}

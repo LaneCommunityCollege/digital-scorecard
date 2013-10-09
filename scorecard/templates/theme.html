@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{active_theme.name }} |
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <div>
+            <h1>{{active_theme.name}}</h1>
+            {% if active_theme.score %}
+                <span class="score">{{active_theme.score}}</span>
+            {% endif %}
+            {{ active_theme.description|safe }}
+        </div>
+    </div>
+    <div style="clear:both"></div>
+{% endblock %}

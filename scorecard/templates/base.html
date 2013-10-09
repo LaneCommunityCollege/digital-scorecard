@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} Institutional Scorecard | Lane Community College</title>
+    <link rel="stylesheet" href="/static/reset.css" type="text/css">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
+    <script src="/static/js/modernizer.js"></script>
+</head>
+<body>
+    <div id="main_container">
+        <header>
+            <a href="http://www.lanecc.edu">
+                <img src="//lanecc.edu/sites/all/themes/custom/lane_default/logo.png" id="header_logo" alt="The Lane Community College Logo">
+            </a>
+            <div id="header_text_container">
+                <span id="header_title"><a href="/scorecard">Institutional Scorecard</a></span>
+                <nav>
+                    <ul>
+                        <li><a href="http://lanecc.edu/accreditation/">Accreditation</a> | </li>
+                        <li><a href="/scorecard/about">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div id="themeheader_container" style="padding-bottom:15px">
+        {% block themeheader %}
+            {%if foundation_theme %}
+                <div id="foundation_theme">
+            {% endif %}
+            {% if theme_list %}
+                <ul>
+                {% for theme in theme_list %}
+                    {% if theme == active_theme %}
+                        <li class="active">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        <div><a class="theme_list_link" href="/scorecard/{{ theme.themeid }}">{{ theme.name }}</a></div></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No themes found!</p>
+            {% endif %}
+            {% if foundation_theme %}
+                <a href="/scorecard/{{foundation_theme.themeid}}"><span id="foundation_title"></span></a>
+                <span>{{foundation_theme.name}}</span>
+                </div>
+            {% endif %}
+        {% endblock %}
+        </div>
+        {% block front_content %}
+        <div class="content_spacer"></div>
+        <div id="content_container">
+            {% block sidebar %}
+                <nav>
+                    <ul>
+                    {% for objective in active_theme.sorted_objectives %}
+                        <li class="collapsed">
+                            <span>{{ objective.name }}</span>
+                            <span class="objective_description">{{ objective.description|safe }} </span>
+                            <ul>
+                            {% for outcome in objective.sorted_outcomes %}
+                                {% if outcome == active_outcome %}
+                                    <li class="active"><a href="/scorecard/{{active_theme.themeid}}/{{objective.objectiveid}}/{{outcome.outcomeid}}">{{outcome.name }}</a> </li>
+                                {% else %}
+                                    <li><a href="/scorecard/{{active_theme.themeid}}/{{objective.objectiveid}}/{{outcome.outcomeid}}">{{outcome.name }}</a> </li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </nav>
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="content_spacer"></div>
+        {% endblock %}
+        <footer></footer>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{active_outcome.name}} | {{active_theme.name }} |
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <div>
+            <h1>{{active_outcome.name}}</h1>
+            {% if active_outcome.score %}
+                <span class="score">{{active_theme.score}}</span>
+            {% endif %}
+            {{ active_outcome.description|safe }}
+            {% for indicator in active_outcome.sorted_indicators %}
+                <h2>{{indicator.name}}</h2>
+                {{indicator.description|safe}}
+            {% endfor %}
+        </div>
+    </div>
+    <div style="clear:both"></div>
+{% endblock %}

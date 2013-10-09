@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block themeheader %}
+    {# Actually all of our content, to simplify styling #}
+    <div id="mission_statement">
+        <div id="mission_content">
+            <h2>Our Vision</h2>
+            <p>Transforming lives through learning</p>
+            <h2>Our Mission</h2>
+            <p>Lane is the community's college; we provide comprehensive, accessible, quality, learning-centered educational opportunities that promote student success.</p>
+        </div>
+        <img id="mission_lines" src="/static/{{num_themes}}.png">
+        {% if foundation_theme %}
+            <div id="foundation_theme" style="position:static">
+        {% endif %}
+        {% if theme_list %}
+            <ul>
+            {% for theme in theme_list %}
+                {% if theme == active_theme %}
+                    <li class="active"><div><span class="theme_list_link">{{ theme.name }}</span></div></li>
+                {% else %}
+                    <li><div><a class="theme_list_link" href="/scorecard/{{ theme.themeid }}">{{ theme.name }}</a></div></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No themes found!</p>
+        {% endif %}
+        {% if foundation_theme %}
+            {# Close out our foundation theme #}
+            <a href="/scorecard/{{foundation_theme.themeid}}"><span id="foundation_title"></span></a>
+            <span>{{foundation_theme.name}}</span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{# empty, just overwriting #}
+{% endblock %}
+
+{% block front_content %}
+
+{% endblock %}
