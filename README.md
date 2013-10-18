@@ -8,3 +8,5 @@ You may find it helpful to know that we used Python 2.7 and Django 1.4.5 on a my
 The administrative interface can be accessed via /admin/
 
 Unfortunately, because this scorecard was open sourced more than a year after being originally developed, some discrepancies may have developed between the running example above and the code provided here. Bug reports are welcome.
+
+For further information, contact: schmidtk@lanecc.edu
